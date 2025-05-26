@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online AI video quality enhancer. Upscale your videos to HD 1080p, 4K, or 8K resolution instantly. No registration required.">
+    <meta name="keywords" content="AI video enhancer, video upscaler, free video quality improvement, HD video converter, 4K video enhancer, 8K video converter">
+    <meta name="author" content="AI Video Enhancer">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Free AI Video Quality Enhancer Online">
+    <meta property="og:description" content="Enhance your videos to HD, 4K or 8K quality with our free AI video enhancer">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aivideoenhancer.com">
+    <meta property="og:image" content="https://aivideoenhancer.com/preview.jpg">
+    <title>Free AI Video Quality Enhancer - Upscale to HD, 4K, 8K Online</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 1.5rem 0;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .upload-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--secondary);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            margin: 1.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(108, 92, 231, 0.05);
+        }
+        
+        .upload-area.active {
+            border-color: var(--success);
+            background: rgba(0, 184, 148, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-success {
+            background: var(--success);
+        }
+        
+        .btn-success:hover {
+            background: #00a884;
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        .option {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .option h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .preview-container {
+            display: none;
+            margin: 2rem 0;
+        }
+        
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .video-box {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .video-box h3 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        video {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-container {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .spinner {
+            border: 5px solid rgba(108, 92, 231, 0.2);
+            border-radius: 50%;
+            border-top: 5px solid var(--primary);
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .video-container {
+                flex-direction: column;
+            }
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            margin: 1rem 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            border-radius: 10px;
+            background-color: var(--success);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Video Quality Enhancer</h1>
+            <p class="tagline">Upscale your videos to HD 1080p, 4K or 8K resolution with our powerful AI technology</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="upload-container">
+            <h2>Enhance Your Video Quality</h2>
+            <p>Upload your video and let our AI enhance it to higher resolution with improved clarity</p>
+            
+            <div class="options">
+                <div class="option">
+                    <h3>Input Quality</h3>
+                    <select id="input-quality">
+                        <option value="auto">Auto-detect</option>
+                        <option value="240p">240p</option>
+                        <option value="360p">360p</option>
+                        <option value="480p">480p</option>
+                        <option value="720p">720p (HD)</option>
+                        <option value="1080p">1080p (Full HD)</option>
+                    </select>
+                </div>
+                
+                <div class="option">
+                    <h3>Enhance To</h3>
+                    <select id="output-quality">
+                        <option value="1080p">1080p (Full HD)</option>
+                        <option value="4k">4K (Ultra HD)</option>
+                        <option value="8k">8K (Full Ultra HD)</option>
+                    </select>
+                </div>
+                
+                <div class="option">
+                    <h3>Enhancement Level</h3>
+                    <select id="enhancement-level">
+                        <option value="balanced">Balanced</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="aggressive">Aggressive</option>
+                    </select>
+                    <div class="tooltip">?
+                        <span class="tooltiptext">Higher enhancement may take longer but produces better results</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="upload-area" class="upload-area">
+                <div class="upload-icon">📁</div>
+                <h3>Drag & Drop Your Video Here</h3>
+                <p>or</p>
+                <button id="browse-btn" class="btn">Browse Files</button>
+                <input type="file" id="file-input" accept="video/*" style="display: none;">
+                <p>Supported formats: MP4, MOV, AVI, MKV (Max 500MB)</p>
+            </div>
+            
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <button id="process-btn" class="btn btn-success" style="display: none;">Enhance Video Quality</button>
+        </section>
+        
+        <div class="loader" id="loader">
+            <div class="spinner"></div>
+            <h3>Processing Your Video</h3>
+            <p>Our AI is working hard to enhance your video quality. This may take a few minutes...</p>
+            <p id="progress-text">0% completed</p>
+        </div>
+        
+        <section class="preview-container" id="preview-container">
+            <h2>Video Preview</h2>
+            <p>Compare the original and enhanced versions of your video</p>
+            
+            <div class="video-container">
+                <div class="video-box">
+                    <h3>Original Video</h3>
+                    <video id="original-video" controls></video>
+                </div>
+                <div class="video-box">
+                    <h3>Enhanced Video</h3>
+                    <video id="enhanced-video" controls></video>
+                </div>
+            </div>
+        </section>
+        
+        <section class="result-container" id="result-container">
+            <h2>Your Enhanced Video is Ready!</h2>
+            <p>Download your high-quality enhanced video below</p>
+            <button id="download-btn" class="btn btn-success">Download Enhanced Video</button>
+            <button id="new-video-btn" class="btn btn-outline">Enhance Another Video</button>
+        </section>
+        
+        <section>
+            <h2>How It Works</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">1️⃣</div>
+                    <h3>Upload Your Video</h3>
+                    <p>Simply drag and drop your video file or click to browse. We support most common video formats.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">2️⃣</div>
+                    <h3>AI Processing</h3>
+                    <p>Our advanced AI analyzes each frame, enhances details, and upscales to your selected resolution.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">3️⃣</div>
+                    <h3>Download Result</h3>
+                    <p>Get your enhanced video in superior quality. No watermarks, no registration required.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Why Choose Our AI Video Enhancer?</h2>
+            <ul style="list-style-type: none; margin: 1.5rem 0;">
+                <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">✅ <strong>Free to use</strong> - No hidden charges or subscriptions</li>
+                <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">✅ <strong>No registration</strong> - Process videos instantly without signing up</li>
+                <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">✅ <strong>Privacy focused</strong> - Videos are deleted after processing</li>
+                <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">✅ <strong>Advanced AI</strong> - Uses state-of-the-art neural networks for best results</li>
+                <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">✅ <strong>Multiple formats</strong> - Works with MP4, MOV, AVI and more</li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <h3>AI Video Quality Enhancer</h3>
+            <p>Transform your videos with the power of artificial intelligence</p>
+            
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">How It Works</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            
+            <p class="copyright">© 2023 AI Video Enhancer. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const fileInput = document.getElementById('file-input');
+            const browseBtn = document.getElementById('browse-btn');
+            const uploadArea = document.getElementById('upload-area');
+            const processBtn = document.getElementById('process-btn');
+            const loader = document.getElementById('loader');
+            const previewContainer = document.getElementById('preview-container');
+            const resultContainer = document.getElementById('result-container');
+            const originalVideo = document.getElementById('original-video');
+            const enhancedVideo = document.getElementById('enhanced-video');
+            const downloadBtn = document.getElementById('download-btn');
+            const newVideoBtn = document.getElementById('new-video-btn');
+            const progressContainer = document.getElementById('progress-container');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            
+            let selectedFile = null;
+            let enhancedVideoUrl = null;
+            
+            // Event listeners
+            browseBtn.addEventListener('click', () => fileInput.click());
+            
+            fileInput.addEventListener('change', handleFileSelect);
+            
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('active');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('active');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('active');
+                
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    handleFileSelect({ target: fileInput });
+                }
+            });
+            
+            processBtn.addEventListener('click', processVideo);
+            downloadBtn.addEventListener('click', downloadEnhancedVideo);
+            newVideoBtn.addEventListener('click', resetForm);
+            
+            // Functions
+            function handleFileSelect(event) {
+                const file = event.target.files[0];
+                
+                if (!file) return;
+                
+                // Check file type
+                const validTypes = ['video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/x-matroska'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Please upload a valid video file (MP4, MOV, AVI, MKV)');
+                    return;
+                }
+                
+                // Check file size (500MB limit)
+                if (file.size > 500 * 1024 * 1024) {
+                    alert('File size exceeds 500MB limit');
+                    return;
+                }
+                
+                selectedFile = file;
+                processBtn.style.display = 'inline-block';
+                
+                // Show preview of original video
+                const videoURL = URL.createObjectURL(file);
+                originalVideo.src = videoURL;
+                
+                // Update UI
+                uploadArea.innerHTML = `
+                    <div class="upload-icon">✔️</div>
+                    <h3>${file.name}</h3>
+                    <p>${formatFileSize(file.size)} • ${file.type.replace('video/', '').toUpperCase()}</p>
+                    <button id="change-file-btn" class="btn btn-outline">Change File</button>
+                `;
+                
+                document.getElementById('change-file-btn').addEventListener('click', resetForm);
+            }
+            
+            function processVideo() {
+                if (!selectedFile) return;
+                
+                // Show loading state
+                processBtn.style.display = 'none';
+                loader.style.display = 'block';
+                progressContainer.style.display = 'block';
+                
+                // Simulate processing with progress updates
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 10;
+                    if (progress > 100) progress = 100;
+                    
+                    progressBar.style.width = `${progress}%`;
+                    progressText.textContent = `${Math.round(progress)}% completed`;
+                    
+                    if (progress === 100) {
+                        clearInterval(interval);
+                        setTimeout(showResults, 1000);
+                    }
+                }, 500);
+            }
+            
+            function showResults() {
+                // Hide loader, show results
+                loader.style.display = 'none';
+                previewContainer.style.display = 'block';
+                resultContainer.style.display = 'block';
+                
+                // In a real app, this would be the URL from your backend processing
+                // For demo, we'll just use the original video
+                enhancedVideoUrl = originalVideo.src;
+                enhancedVideo.src = enhancedVideoUrl;
+                
+                // Scroll to results
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            function downloadEnhancedVideo() {
+                if (!enhancedVideoUrl) return;
+                
+                const a = document.createElement('a');
+                a.href = enhancedVideoUrl;
+                a.download = `enhanced_${selectedFile.name}`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+            
+            function resetForm() {
+                // Reset all UI elements
+                selectedFile = null;
+                enhancedVideoUrl = null;
+                
+                fileInput.value = '';
+                processBtn.style.display = 'none';
+                loader.style.display = 'none';
+                previewContainer.style.display = 'none';
+                resultContainer.style.display = 'none';
+                progressContainer.style.display = 'none';
+                progressBar.style.width = '0%';
+                
+                originalVideo.src = '';
+                enhancedVideo.src = '';
+                
+                uploadArea.innerHTML = `
+                    <div class="upload-icon">📁</div>
+                    <h3>Drag & Drop Your Video Here</h3>
+                    <p>or</p>
+                    <button id="browse-btn" class="btn">Browse Files</button>
+                    <p>Supported formats: MP4, MOV, AVI, MKV (Max 500MB)</p>
+                `;
+                
+                // Re-attach event listeners
+                document.getElementById('browse-btn').addEventListener('click', () => fileInput.click());
+            }
+            
+            function formatFileSize(bytes) {
+                if (bytes < 1024) return bytes + ' bytes';
+                else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+                else return (bytes / 1048576).toFixed(1) + ' MB';
+            }
+        });
+    </script>
+</body>
+</html>
